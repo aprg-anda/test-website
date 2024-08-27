@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Simple Website with CSS</title>
+    <title>Simple Website with CSS</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -48,6 +48,20 @@
             margin-bottom: 20px;
         }
 
+        #nameday-container {
+            background-color: white;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #nameday {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
         footer {
             background-color: #333;
             color: white;
@@ -61,36 +75,60 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to My Website</h1>
+        <h1>Welcome to a Website</h1>
     </header>
 
     <nav>
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#weather">Contact</a></li>
+            <li><a href="#nevnap">Névnap</a></li>
+            <li><a href="#weather">Weather</a></li>
         </ul>
     </nav>
 
     <main>
         <section id="home">
             <h2>Home</h2>
-            <p>This is the homepage of my simple website.</p>
+            <p>This is the homepage, so far only page, of this website.</p>
         </section>
 
         <section id="about">
             <h2>About</h2>
-            <p>This section contains information about me and my website.</p>
+            <p>This is a website.</p>
         </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <p>You can contact me at: myemail@example.com</p>
+        <section id="nevnap">
+            <h2>Névnap</h2>
+
+            <div id="nameday-container">
+                <h1>Today's Nameday in Hungary</h1>
+                <p>Today is the nameday of:</p>
+                <p id="nameday">Loading...</p>
+            </div>
+        
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    fetch('https://nameday.abalin.net/api/V1/today?country=hu')
+                        .then(response => response.json())
+                        .then(data => {
+                            // Extract the nameday from the response
+                            const nameday = data.nameday.hu;
+        
+                            // Display the nameday
+                            document.getElementById('nameday').textContent = nameday;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching nameday:', error);
+                            document.getElementById('nameday').textContent = 'Error loading nameday';
+                        });
+                });
+            </script>
         </section>
 
         <section id="weather">
-            <iframe src="https://www.meteoblue.com/hu/id%C5%91j%C3%A1r%C3%A1s/widget/daily/api_nep%c3%a1l_1283728?geoloc=fixed&days=5&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&precipunit=MILLIMETER&coloured=coloured&pictoicon=1&maxtemperature=1&mintemperature=1&windspeed=1&windgust=0&winddirection=1&uv=0&humidity=0&precipitation=1&precipitationprobability=1&spot=0&pressure=0&layout=light"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 270px; height: 420px"></iframe><div><!-- DO NOT REMOVE THIS LINK --><a href="https://www.meteoblue.com/hu/id%C5%91j%C3%A1r%C3%A1s/h%C3%A9t/api_nep%c3%a1l_1283728?utm_source=daily_widget&utm_medium=linkus&utm_content=daily&utm_campaign=Weather%2BWidget" target="_blank" rel="noopener">meteoblue</a></div>
+            <h2>Időjárás</h2>
+            <iframe src="https://www.meteoblue.com/hu/id%C5%91j%C3%A1r%C3%A1s/widget/daily?geoloc=detect&days=5&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&precipunit=MILLIMETER&coloured=coloured&pictoicon=1&maxtemperature=1&mintemperature=1&windspeed=1&windgust=0&winddirection=1&uv=0&humidity=0&precipitation=1&precipitationprobability=1&spot=0&pressure=0&layout=light"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 270px; height: 420px"></iframe><div><!-- DO NOT REMOVE THIS LINK --><a href="https://www.meteoblue.com/hu/id%C5%91j%C3%A1r%C3%A1s/h%C3%A9t/index?utm_source=daily_widget&utm_medium=linkus&utm_content=daily&utm_campaign=Weather%2BWidget" target="_blank" rel="noopener">meteoblue</a></div>
         </section>
     </main>
 
