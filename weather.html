@@ -49,7 +49,6 @@
         }
 
         #nameday-container {
-            background-image: "nevnap3.png";
             background-color: white;
             padding: 20px;
             margin: 0 auto;
@@ -58,7 +57,6 @@
         }
 
         #nameday {
-            margin: 0 auto;
             font-size: 24px;
             font-weight: bold;
             color: #4CAF50;
@@ -82,36 +80,16 @@
 
     <nav>
         <ul>
-            <li><a href="#nevnap">Névnap</a></li>
-            <li><a href="weather.html">Weather</a></li>
+            <li><a href="index.html">Névnap</a></li>
+            <li><a href="#weather">Weather</a></li>
         </ul>
     </nav>
 
     <main>
-        <section id="nevnap">
-            <h2>Névnap</h2>
 
-            <div id="nameday-container">
-                <p id="nameday">Loading...</p>
-            </div>
-        
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    fetch('https://nameday.abalin.net/api/V1/today?country=hu')
-                        .then(response => response.json())
-                        .then(data => {
-                            // Extract the nameday from the response
-                            const nameday = data.nameday.hu;
-        
-                            // Display the nameday
-                            document.getElementById('nameday').textContent = nameday;
-                        })
-                        .catch(error => {
-                            console.error('Error fetching nameday:', error);
-                            document.getElementById('nameday').textContent = 'Error loading nameday';
-                        });
-                });
-            </script>
+        <section id="weather">
+            <h2>Időjárás</h2>
+            <iframe src="https://www.meteoblue.com/hu/id%C5%91j%C3%A1r%C3%A1s/widget/daily?geoloc=detect&days=5&tempunit=CELSIUS&windunit=KILOMETER_PER_HOUR&precipunit=MILLIMETER&coloured=coloured&pictoicon=1&maxtemperature=1&mintemperature=1&windspeed=1&windgust=0&winddirection=1&uv=0&humidity=0&precipitation=1&precipitationprobability=1&spot=0&pressure=0&layout=light"  frameborder="0" scrolling="NO" allowtransparency="true" sandbox="allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox" style="width: 270px; height: 420px"></iframe><div><!-- DO NOT REMOVE THIS LINK --><a href="https://www.meteoblue.com/hu/id%C5%91j%C3%A1r%C3%A1s/h%C3%A9t/index?utm_source=daily_widget&utm_medium=linkus&utm_content=daily&utm_campaign=Weather%2BWidget" target="_blank" rel="noopener">meteoblue</a></div>
         </section>
     </main>
 
